@@ -83,3 +83,48 @@ extension NestedModel: Decodable {
 		)
 	}
 }
+
+struct CollectionsModel {
+	let reqIntArray: [Int]
+	let reqStrArray: [String]
+	let reqBoolArray : [Bool]
+	let optStrArray: [String]?
+	let optIntArray: [Int]?
+	let optBoolArray : [Bool]?
+	let optSimpleModelArray : [SimpleModel]?
+}
+
+extension CollectionsModel: Decodable {
+	static func make(#reqInt: Decoded<[Int]>, reqStr: Decoded<[String]>, reqBool: Decoded<[Bool]>, optStr: Decoded<[String]?>, optInt: Decoded<[Int]?>, optBool: Decoded<[Bool]?>, optSimpleModel: Decoded<[SimpleModel]?>) -> Decoded<CollectionsModel> {
+		
+		if let e = reqInt.error { return .Error(e) }
+		if let e = reqStr.error { return .Error(e) }
+		if let e = reqBool.error { return .Error(e) }
+		if let e = optStr.error { return .Error(e) }
+		if let e = optInt.error { return .Error(e) }
+		if let e = optBool.error { return .Error(e) }
+		if let e = optSimpleModel.error { return .Error(e) }
+		
+		let model = CollectionsModel(
+			reqIntArray: reqInt.value!,
+			reqStrArray: reqStr.value!,
+			reqBoolArray: reqBool.value!,
+			optStrArray: optStr.value!,
+			optIntArray: optInt.value!,
+			optBoolArray: optBool.value!,
+			optSimpleModelArray: optSimpleModel.value!)
+		return .Success(Box(model))
+	}
+	
+	static func decode(json: JSON) -> Decoded<CollectionsModel> {
+		return CollectionsModel.make(
+			reqInt: json.value("reqInt"),
+			reqStr: json.value("reqStr"),
+			reqBool: json.value("reqBool"),
+			optStr: json.value("optStr"),
+			optInt: json.value("optInt"),
+			optBool: json.value("optBool"),
+			optSimpleModel: json.value("optSimpleModel")
+		)
+	}
+}

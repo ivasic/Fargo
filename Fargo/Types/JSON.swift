@@ -62,12 +62,12 @@ public func == (lhs: JSON, rhs: JSON) -> Bool {
 extension JSON {
 	
 	static func typeMismatch<T>(expectedType: Swift.String, object: Printable) -> Decoded<T> {
-		let error = NSError(domain: FargoErrorDomain, code: FargoErrorCode.TypeMismatch.rawValue, userInfo: [NSLocalizedDescriptionKey: NSLocalizedString("\(object) is not a \(expectedType)", comment: "")])
+		let error = NSError(domain: FargoErrorDomain, code: FargoErrorCode.TypeMismatch.rawValue, userInfo: [NSLocalizedDescriptionKey: NSLocalizedString("`\(object)` is not a `\(expectedType)`", comment: "")])
 		return .Error(error)
 	}
 	
 	static func missingKey<T>(key: Swift.String, object: JSON) -> Decoded<T> {
-		let error = NSError(domain: FargoErrorDomain, code: FargoErrorCode.MissingKey.rawValue, userInfo: [NSLocalizedDescriptionKey: NSLocalizedString("Key \(key) doesn't exist in \(object)", comment: "")])
+		let error = NSError(domain: FargoErrorDomain, code: FargoErrorCode.MissingKey.rawValue, userInfo: [NSLocalizedDescriptionKey: NSLocalizedString("Key `\(key)` doesn't exist in \(object)", comment: "")])
 		return .Error(error)
 	}
 	
@@ -76,7 +76,7 @@ extension JSON {
 		case .Object(let o):
 			return .Success(Box(o))
 		default:
-			let error = NSError(domain: FargoErrorDomain, code: FargoErrorCode.TypeMismatch.rawValue, userInfo: [NSLocalizedDescriptionKey: "\(self) is not an Object"])
+			let error = NSError(domain: FargoErrorDomain, code: FargoErrorCode.TypeMismatch.rawValue, userInfo: [NSLocalizedDescriptionKey: "`\(self)` is not an Object"])
 			return .Error(error)
 		}
 	}
@@ -89,6 +89,68 @@ extension JSON {
 			return A.decode(s)
 		} else {
 			return JSON.missingKey(key, object: self)
+		}
+	}
+	
+	public func value<A where A: Decodable, A == A.DecodedType>(key: Swift.String) -> Decoded<[A]> {
+		let obj = object(key)
+		if let error = obj.error { return .Error(error) }
+		
+		if let array = obj.value![key] {
+			switch array {
+			case .Array(let jsonArray):
+				let mapped = jsonArray.map(A.decode)
+				let reduced = mapped.reduce(Decoded<[A]>.Success(Box([A]())), combine: { (accum, decoded) -> Decoded<[A]> in
+					switch accum {
+					case .Success(let box):
+						var array = box.value
+						switch decoded {
+						case .Success(let valueBox):
+							array.append(valueBox.value)
+							return .Success(Box(array))
+						case .Error(let error): return .Error(error)
+						}
+					case .Error: return accum
+					}
+				})
+				
+				return reduced
+			default:
+				return JSON.typeMismatch("Array", object: array)
+			}
+		} else {
+			return JSON.missingKey(key, object: self)
+		}
+	}
+	
+	public func value<A where A: Decodable, A == A.DecodedType>(key: Swift.String) -> Decoded<[A]?> {
+		let obj = object(key)
+		if let error = obj.error { return .Error(error) }
+		
+		if let array = obj.value![key] {
+			switch array {
+			case .Array(let jsonArray):
+				let mapped = jsonArray.map(A.decode)
+				let reduced = mapped.reduce(Decoded<[A]?>.Success(Box([A]())), combine: { (accum, decoded) -> Decoded<[A]?> in
+					switch accum {
+					case .Success(let box):
+						var array = box.value
+						switch decoded {
+						case .Success(let valueBox):
+							array?.append(valueBox.value)
+							return .Success(Box(array))
+						case .Error(let error): return .Error(error)
+						}
+					case .Error: return accum
+					}
+				})
+				
+				return reduced
+			default:
+				return JSON.typeMismatch("Array", object: array)
+			}
+		} else {
+			return .Success(Box(.None))
 		}
 	}
 	

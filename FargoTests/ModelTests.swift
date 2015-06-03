@@ -135,6 +135,40 @@ class ModelTests: XCTestCase {
 		}
 	}
 	
+	
+	func testCollectionsModelDecoding() {
+		let s1 = ["reqInt" : 42,
+			"reqStr" : "test",
+			"reqBool" : true,
+			"optStr" : "optional",
+			"optInt" : 2,
+			"optBool" : false]
+		
+		let collections: [String: AnyObject] = ["reqInt" : [1, 2, 3],
+			"reqStr" : ["1", "2", "3"],
+			"reqBool" : [true, true, false],
+			"optStr" : ["3", "2", "1"],
+			"optInt" : [3, 2, 1],
+			"optBool" : [false, false, true],
+			"optSimpleModel": [s1, s1, s1]
+		]		
+		
+		let json = JSON.encode(collections)
+		
+		if let m: CollectionsModel = json.decode() {
+			XCTAssertEqual(m.reqIntArray, [1, 2, 3])
+			XCTAssertEqual(m.reqStrArray, ["1", "2", "3"])
+			XCTAssertEqual(m.reqBoolArray, [true, true, false])
+			XCTAssertEqual(m.optStrArray ?? [], ["3", "2", "1"])
+			XCTAssertEqual(m.optIntArray ?? [], [3, 2, 1])
+			XCTAssertEqual(m.optBoolArray ?? [], [false, false, true])
+			XCTAssertEqual(m.optSimpleModelArray?.first?.optInt ?? 0, 2)
+			XCTAssertEqual(m.optSimpleModelArray?.last?.optInt ?? 0, 2)
+		} else {
+			XCTFail("CollectionsModel could not be decoded")
+		}
+	}
+	
     func testPerformanceExample() {
         // This is an example of a performance test case.
         self.measureBlock() {
