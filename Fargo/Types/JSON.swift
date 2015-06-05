@@ -159,6 +159,9 @@ extension JSON {
 		if let error = obj.error { return .Error(error) }
 		
 		if let s = obj.value![key] {
+			if s == .Null {
+				return .Success(Box(.None))
+			}
 			let decoded =  A.decode(s)
 			switch decoded {
 			case .Success(let box): return .Success(Box(.Some(box.value)))
