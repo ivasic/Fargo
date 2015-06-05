@@ -184,6 +184,21 @@ extension JSON {
 		}
 	}
 	
+	public func value<A, T where A: Decodable, A == A.DecodedType>(key: Swift.String, convert: (A) -> T?) -> Decoded<T?> {
+		let obj = object(key)
+		if let error = obj.error { return .Error(error) }
+		
+		if let s = obj.value![key] {
+			let decoded =  A.decode(s)
+			switch decoded {
+			case .Success(let box): return .Success(Box(convert(box.value)))
+			case .Error(let error): return .Error(error)
+			}
+		} else {
+			return .Success(Box(.None))
+		}
+	}
+	
 	public func decode<T: Decodable where T == T.DecodedType>() -> T? {
 		return T.decode(self).value
 	}
