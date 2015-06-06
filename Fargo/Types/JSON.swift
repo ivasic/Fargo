@@ -78,6 +78,16 @@ extension JSON {
 		return .optional(self.value(key))
 	}
 	
+	// Pull embedded value from JSON
+	public func value<A where A: Decodable, A == A.DecodedType>(keys: [Swift.String]) -> Decoded<A> {
+		return flatReduce(keys, self, decodedJSONForKey).flatMap(A.decode)
+	}
+	
+	// Pull embedded optional value from JSON
+	public func value<A where A: Decodable, A == A.DecodedType>(keys: [Swift.String]) -> Decoded<A?> {
+		return .optional(self.value(keys))
+	}
+	
 	// MARK: Arrays
 	
 	// Pull array from JSON
@@ -88,6 +98,16 @@ extension JSON {
 	// Pull optional array from JSON
 	public func value<A where A: Decodable, A == A.DecodedType>(key: Swift.String) -> Decoded<[A]?> {
 		return .optional(self.value(key))
+	}
+	
+	// Pull embedded array from JSON
+	public func value<A where A: Decodable, A == A.DecodedType>(keys: [Swift.String]) -> Decoded<[A]> {
+		return self.value(keys).flatMap(decodeArray)
+	}
+	
+	// Pull embedded optional array from JSON
+	public func value<A where A: Decodable, A == A.DecodedType>(keys: [Swift.String]) -> Decoded<[A]?> {
+		return .optional(self.value(keys))
 	}
 }
 
@@ -127,5 +147,11 @@ private func guardNull(key: String, j: JSON) -> Decoded<JSON> {
 	switch j {
 	case .Null: return .MissingKey(key)
 	default: return .Success(Box(j))
+	}
+}
+
+private func flatReduce<S: SequenceType, U>(sequence: S, initial: U, combine: (U, S.Generator.Element) -> Decoded<U>) -> Decoded<U> {
+	return reduce(sequence, Decoded.Success(Box(initial))) { accum, x in
+		accum.flatMap({ combine($0, x) })
 	}
 }

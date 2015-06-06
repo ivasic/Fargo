@@ -102,3 +102,39 @@ extension CollectionsModel: Decodable {
 			<*> json.value("optSimpleModel")
 	}
 }
+
+struct SimpleEmbedded {
+	let int: Int
+	let str: String?
+}
+
+extension SimpleEmbedded: Decodable {
+	static func make(int: Int)(str: String?) -> SimpleEmbedded {
+		let model = SimpleEmbedded(int: int, str: str)
+		return model
+	}
+	
+	static func decode(json: JSON) -> Decoded<SimpleEmbedded> {
+		return SimpleEmbedded.make <^> json.value(["embedded", "int"]) <*> json.value(["embedded", "inner", "str"])
+	}
+}
+
+struct CollectionsEmbedded {
+	let ints: [Int]
+	let bools: [Bool]?
+	let strs: [String]?
+}
+
+extension CollectionsEmbedded: Decodable {
+	static func make(ints: [Int])(bools: [Bool]?)(strs: [String]?) -> CollectionsEmbedded {
+		let model = CollectionsEmbedded(ints: ints, bools: bools, strs: strs)
+		return model
+	}
+	
+	static func decode(json: JSON) -> Decoded<CollectionsEmbedded> {
+		return CollectionsEmbedded.make
+			<^> json.value(["embedded", "ints"])
+			<*> json.value(["embedded", "bools"])
+			<*> json.value(["embedded", "strs"])
+	}
+}

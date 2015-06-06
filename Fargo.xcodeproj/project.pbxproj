@@ -20,7 +20,7 @@
 		2C63D2671B1B3FDE005B9ECA /* BoxType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C63D2571B1B3FDE005B9ECA /* BoxType.swift */; };
 		2C63D2691B1B3FDE005B9ECA /* MutableBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C63D2591B1B3FDE005B9ECA /* MutableBox.swift */; };
 		2C63D27E1B1B4581005B9ECA /* Fargo.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C63D23E1B1B3F6A005B9ECA /* Fargo.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		2C63D2821B1B4840005B9ECA /* TestModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C63D2811B1B4840005B9ECA /* TestModels.swift */; };
+		2C63D2821B1B4840005B9ECA /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C63D2811B1B4840005B9ECA /* Models.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,7 +50,7 @@
 		2C63D2561B1B3FDE005B9ECA /* Box.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Box.swift; sourceTree = "<group>"; };
 		2C63D2571B1B3FDE005B9ECA /* BoxType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoxType.swift; sourceTree = "<group>"; };
 		2C63D2591B1B3FDE005B9ECA /* MutableBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MutableBox.swift; sourceTree = "<group>"; };
-		2C63D2811B1B4840005B9ECA /* TestModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestModels.swift; sourceTree = "<group>"; };
+		2C63D2811B1B4840005B9ECA /* Models.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,8 +114,8 @@
 		2C63D2271B1B3F0D005B9ECA /* FargoTests */ = {
 			isa = PBXGroup;
 			children = (
+				2C63D2811B1B4840005B9ECA /* Models.swift */,
 				2C63D22A1B1B3F0D005B9ECA /* ModelTests.swift */,
-				2C63D2811B1B4840005B9ECA /* TestModels.swift */,
 				2C63D2281B1B3F0D005B9ECA /* Supporting Files */,
 			);
 			path = FargoTests;
@@ -316,7 +316,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2C63D22B1B1B3F0D005B9ECA /* ModelTests.swift in Sources */,
-				2C63D2821B1B4840005B9ECA /* TestModels.swift in Sources */,
+				2C63D2821B1B4840005B9ECA /* Models.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

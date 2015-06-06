@@ -169,6 +169,64 @@ class ModelTests: XCTestCase {
 		}
 	}
 	
+	func testEmbeddedObjectsDecoding() {
+		let j = ["embedded" : ["int": 42, "inner": ["str": "test"]]]
+		let json = JSON.encode(j)
+		
+		let d: Decoded<SimpleEmbedded> = json.decode()
+		
+		if let m = d.value {
+			XCTAssertEqual(m.int, 42)
+			XCTAssertEqual(m.str ?? "", "test")
+		} else {
+			XCTFail("SimpleModel could not be decoded: \(d)")
+		}
+	}
+	
+	func testEmbeddedObjectsNullDecoding() {
+		let j = ["embedded" : ["int": 42]]
+		let json = JSON.encode(j)
+		
+		let d: Decoded<SimpleEmbedded> = json.decode()
+		
+		if let m = d.value {
+			XCTAssertEqual(m.int, 42)
+			XCTAssertNil(m.str)
+		} else {
+			XCTFail("SimpleModel could not be decoded: \(d)")
+		}
+	}
+	
+	func testEmbeddedCollectionsDecoding() {
+		let j: [String: AnyObject] = ["embedded" : ["ints": [42, 1, 2], "bools": [true, false], "strs": ["1", "2"]]]
+		let json = JSON.encode(j)
+		
+		let d: Decoded<CollectionsEmbedded> = json.decode()
+		
+		if let m = d.value {
+			XCTAssertEqual(m.ints, [42,1,2])
+			XCTAssertEqual(m.bools ?? [], [true, false])
+			XCTAssertEqual(m.strs ?? [], ["1", "2"])
+		} else {
+			XCTFail("CollectionsEmbedded could not be decoded: \(d)")
+		}
+	}
+	
+	func testEmbeddedCollectionsNullDecoding() {
+		let j: [String: AnyObject] = ["embedded" : ["ints": [42, 1, 2], "strs": NSNull()]]
+		let json = JSON.encode(j)
+		
+		let d: Decoded<CollectionsEmbedded> = json.decode()
+		
+		if let m = d.value {
+			XCTAssertEqual(m.ints, [42,1,2])
+			XCTAssertNil(m.bools)
+			XCTAssertNil(m.strs)
+		} else {
+			XCTFail("CollectionsEmbedded could not be decoded: \(d)")
+		}
+	}
+	
     func testPerformanceExample() {
         // This is an example of a performance test case.
         self.measureBlock() {
