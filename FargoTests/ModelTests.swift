@@ -42,7 +42,7 @@ class ModelTests: XCTestCase {
 			XCTFail("SimpleModel could not be decoded")
 		}
 	}
-	
+
 	func testSimpleModelOptionalNullDecoding() {
 		let j = ["reqInt" : 42,
 			"reqStr" : "test",
@@ -61,7 +61,7 @@ class ModelTests: XCTestCase {
 			XCTFail("SimpleModel could not be decoded")
 		}
 	}
-	
+
 	func testNestedModelDecoding() {
 		
 		let s1 = ["reqInt" : 42,
