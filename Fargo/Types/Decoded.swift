@@ -42,7 +42,7 @@ extension Decoded: Printable {
 }
 
 public extension Decoded {
-	func map<U>(f: T -> U) -> Decoded<U> {
+	func map<U>(f: (T) -> U) -> Decoded<U> {
 		switch self {
 		case let .Success(box): return .Success(Box(f(box.value)))
 		case let .MissingKey(string): return .MissingKey(string)

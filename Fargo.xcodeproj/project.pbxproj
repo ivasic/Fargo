@@ -101,7 +101,6 @@
 		2C63D21A1B1B3F0D005B9ECA /* Fargo */ = {
 			isa = PBXGroup;
 			children = (
-				2C63D2341B1B3F6A005B9ECA /* Extensions */,
 				2C63D2361B1B3F6A005B9ECA /* Functions */,
 				2C208F6C1B2371E900629D8B /* Operators */,
 				2C63D23D1B1B3F6A005B9ECA /* Resources */,
@@ -127,13 +126,6 @@
 				2C63D2291B1B3F0D005B9ECA /* Info.plist */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		2C63D2341B1B3F6A005B9ECA /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Extensions;
 			sourceTree = "<group>";
 		};
 		2C63D2361B1B3F6A005B9ECA /* Functions */ = {
