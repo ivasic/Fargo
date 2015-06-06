@@ -11,11 +11,11 @@ public enum JSON {
 public extension JSON {
   static func encode(json: AnyObject) -> JSON {
     switch json {
-    case let v as [AnyObject]: return .Array(v.map(self.encode))
+    case let v as [AnyObject]: return .Array(v.map(encode))
 
     case let v as [Swift.String: AnyObject]:
       return .Object(reduce(v, [:]) { (var accum, elem) in
-        let parsedValue = (Optional.Some(elem.1).map(self.encode)) ?? .Null
+        let parsedValue = (Optional.Some(elem.1).map(encode)) ?? .Null
         accum[elem.0] = parsedValue
         return accum
       })

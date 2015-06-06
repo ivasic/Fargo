@@ -162,3 +162,56 @@ extension HeterogenousModel: Decodable {
 			<*> json.value("url").map({ NSURL(string: $0) })	// or inline
 	}
 }
+
+struct BigModelInner {
+	let id: String
+	let guid: String
+	let text: String?
+}
+
+extension BigModelInner: Decodable {
+	
+	static func create(id: String)(guid: String)(text: String?) -> BigModelInner {
+		return BigModelInner(id: id, guid: guid, text: text)
+	}
+	
+	static func decode(json: JSON) -> Decoded<BigModelInner> {
+		return BigModelInner.create
+			<^> json.value("id")
+			<*> json.value("guid")
+			<*> json.value("text")
+	}
+}
+
+struct BigModel {
+	let id: String
+	let index: Int
+	let guid: String
+	let active: Bool
+	let balance: Double
+	let picture: NSURL?
+	let age: Int
+	let latitude: Float
+	let longitude: Float
+	let inner: BigModelInner?
+}
+
+extension BigModel: Decodable {
+	static func create(id: String)(index: Int)(guid: String)(active: Bool)(balance: Double)(picture: NSURL?)(age: Int)(latitude: Float)(longitude: Float)(inner: BigModelInner?) -> BigModel {
+		return BigModel(id: id, index: index, guid: guid, active: active, balance: balance, picture: picture, age: age, latitude: latitude, longitude: longitude, inner: inner)
+	}
+	
+	static func decode(json: JSON) -> Decoded<BigModel> {
+		return BigModel.create
+			<^> json.value("id")
+			<*> json.value("index")
+			<*> json.value("guid")
+			<*> json.value("active")
+			<*> json.value("balance")
+			<*> json.value("picture").map({ return NSURL(string: $0) })
+			<*> json.value("age")
+			<*> json.value("latitude")
+			<*> json.value("longitude")
+			<*> json.value("inner")
+	}
+}
