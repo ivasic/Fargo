@@ -16,6 +16,39 @@ You'll also need to add [Box] to your project the same way.
 
 ## Usage tl;dr:
 
-TODO
+```swift
+struct ExampleModel {
+	var id: Int
+	var text: String?
+	var date: NSDate?
+	var url: NSURL?
+	var tags: [String]
+}
+
+extension ExampleModel: Decodable {
+	static func create(id: Int)(text: String?)(date: NSDate?)(url: NSURL?)(tags: [String]) -> ExampleModel {
+		return ExampleModel(id: id, text: text, date: NSDate(), url: url, tags: tags)
+	}		
+	
+	static func decode(json: JSON) -> Decoded<ExampleModel> {
+		return ExampleModel.create
+			<^> json.value("id")
+			<*> json.value(["extras", "text"])							// nested objects
+			<*> json.value("date").map(convertDate)						// with converter function
+			<*> json.value("url").map({ return NSURL(string: $0) })		// or inline
+			<*> json.value("tags")										// arrays
+	}
+}
+
+// From your JSON data
+
+let dict: AnyObject? = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.allZeros, error: nil)
+
+if let dict = dict {
+	let json = JSON.encode(dict)
+	let model: ExampleModel? = json.decode() // decode model object directly
+	let decodedModel: Decoded<ExampleModel> = json.decode() // or preserve decoding error info
+
+```
 
 For more examples on how to use Fargo, please check out the tests.

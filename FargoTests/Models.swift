@@ -215,3 +215,49 @@ extension BigModel: Decodable {
 			<*> json.value("inner")
 	}
 }
+
+struct ExampleModel {
+	var id: Int
+	var text: String?
+	var date: NSDate?
+	var url: NSURL?
+	var tags: [String]
+}
+
+extension ExampleModel: Decodable {
+	static func create(id: Int)(text: String?)(date: NSDate?)(url: NSURL?)(tags: [String]) -> ExampleModel {
+		return ExampleModel(id: id, text: text, date: NSDate(), url: url, tags: tags)
+	}
+	
+	static func convertDate(string: String) -> NSDate? {
+		let df = NSDateFormatter()
+		df.dateFormat = "yyyy-MM-dd HH:mm:ss ZZZ"
+		return df.dateFromString(string)
+	}
+	
+	static func decode(json: JSON) -> Decoded<ExampleModel> {
+		return ExampleModel.create
+			<^> json.value("id")
+			<*> json.value(["extras", "text"])							// nested objects
+			<*> json.value("date").map(convertDate)						// with converter function
+			<*> json.value("url").map({ return NSURL(string: $0) })		// or inline
+			<*> json.value("tags")										// arrays
+	}
+}
+
+struct ExtendedModel {
+	var id: Int
+	var examples: [ExampleModel]
+}
+
+extension ExtendedModel: Decodable {
+	static func create(id: Int)(examples: [ExampleModel]) -> ExtendedModel {
+		return ExtendedModel(id: id, examples: examples)
+	}
+	
+	static func decode(json: JSON) -> Decoded<ExtendedModel> {
+		return ExtendedModel.create
+			<^> json.value("id")
+			<*> json.value("examples")	// any object conforming to Decodable will work
+	}
+}
