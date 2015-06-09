@@ -234,8 +234,22 @@ class ModelTests: XCTestCase {
 		let d: Decoded<HeterogenousModel> = json.decode()
 		
 		if let m = d.value {
-			XCTAssertEqual(m.date, NSDate(timeIntervalSince1970: 1433756460))
-			XCTAssertEqual(m.url ?? NSURL(), NSURL(string: "http://www.github.com")!)
+			XCTAssertEqual(m.date ?? NSDate(), NSDate(timeIntervalSince1970: 1433756460))
+			XCTAssertEqual(m.url, NSURL(string: "http://www.github.com")!)
+		} else {
+			XCTFail("HeterogenousModel could not be decoded: \(d)")
+		}
+	}
+	
+	func testHeteroModelWithNullsDecoding() {
+		let j = ["url": "http://www.github.com"]
+		let json = JSON.encode(j)
+		
+		let d: Decoded<HeterogenousModel> = json.decode()
+		
+		if let m = d.value {
+			XCTAssertNil(m.date)
+			XCTAssertEqual(m.url, NSURL(string: "http://www.github.com")!)
 		} else {
 			XCTFail("HeterogenousModel could not be decoded: \(d)")
 		}

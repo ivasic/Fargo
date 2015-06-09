@@ -34,8 +34,8 @@ extension ExampleModel: Decodable {
 		return ExampleModel.create
 			<^> json.value("id")
 			<*> json.value(["extras", "text"])							// nested objects
-			<*> json.value("date").map(convertDate)						// with converter function
-			<*> json.value("url").map({ return NSURL(string: $0) })		// or inline
+			<*> json.value("date").convert(convertDate)						// with converter function
+			<*> json.value("url").convert({ return NSURL(string: $0)! })					// or inline
 			<*> json.value("tags")										// arrays
 	}
 }

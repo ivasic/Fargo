@@ -140,26 +140,29 @@ extension CollectionsEmbedded: Decodable {
 }
 
 struct HeterogenousModel {
-	let date: NSDate
-	let url: NSURL?
+	let date: NSDate?
+	let url: NSURL
 }
 
 extension HeterogenousModel: Decodable {
-	static func make(date: NSDate)(url: NSURL?) -> HeterogenousModel {
+	static func make(date: NSDate?)(url: NSURL) -> HeterogenousModel {
 		let model = HeterogenousModel(date: date, url: url)
 		return model
 	}
 	
-	static func convertDate(string: String) -> NSDate {
-		let df = NSDateFormatter()
-		df.dateFormat = "yyyy-MM-dd HH:mm:ss ZZZ"
-		return df.dateFromString(string)!
+	static func convertDate(string: String?) -> NSDate? {
+		if let string = string {
+			let df = NSDateFormatter()
+			df.dateFormat = "yyyy-MM-dd HH:mm:ss ZZZ"
+			return df.dateFromString(string)
+		}
+		return nil
 	}
 	
 	static func decode(json: JSON) -> Decoded<HeterogenousModel> {
 		return HeterogenousModel.make
-			<^> json.value("date").map(convertDate)				// with converter function
-			<*> json.value("url").map({ NSURL(string: $0) })	// or inline
+			<^> json.value("date").convert(convertDate)				// using functions
+			<*> json.value("url").convert({ NSURL(string: $0)! })	// or inline
 	}
 }
 
@@ -239,8 +242,8 @@ extension ExampleModel: Decodable {
 		return ExampleModel.create
 			<^> json.value("id")
 			<*> json.value(["extras", "text"])							// nested objects
-			<*> json.value("date").map(convertDate)						// with converter function
-			<*> json.value("url").map({ return NSURL(string: $0) })		// or inline
+			<*> json.value("date").convert(convertDate)					// with converter function
+			<*> json.value("url").convert({ return NSURL(string: $0) })	// or inline
 			<*> json.value("tags")										// arrays
 	}
 }

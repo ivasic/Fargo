@@ -65,4 +65,8 @@ public extension Decoded {
 		case let .TypeMismatch(string): return .TypeMismatch(string)
 		}
 	}
+	
+	public func convert<U>(f: T -> U) -> Decoded<U> {
+		return self.map(f)
+	}
 }
