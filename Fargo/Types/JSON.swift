@@ -131,6 +131,10 @@ extension JSON {
 	public func decode<A where A: Decodable, A == A.DecodedType>() -> Decoded<[A]> {
 		return decodeArray(self)
 	}
+	
+	public func decode<A where A: Decodable, A == A.DecodedType>() -> Decoded<[A]?> {
+		return .optional(decodeArray(self))
+	}
 }
 
 private func decodeArray<T where T: Decodable, T == T.DecodedType>(json: JSON) -> Decoded<[T]> {
