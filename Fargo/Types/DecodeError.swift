@@ -1,5 +1,5 @@
 //
-//  Decodable.swift
+//  DecodeError.swift
 //  Fargo
 //
 //  Created by Ivan Vasic on 20/06/15.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-public protocol Decodable {
-	typealias DecodedType = Self
-	static func decode(json: JSON) throws -> DecodedType
+public enum DecodeError : ErrorType {
+	case MissingKey(String)
+	case TypeMismatch(String)
 }

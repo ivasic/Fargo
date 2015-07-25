@@ -1,161 +1,181 @@
+//
+//  JSON.swift
+//  Fargo
+//
+//  Created by Ivan Vasic on 20/06/15.
+//  Copyright © 2015 Ivan Vasic. All rights reserved.
+//
+
 import Foundation
 
 public enum JSON {
-  case Object([Swift.String: JSON])
-  case Array([JSON])
-  case String(Swift.String)
-  case Number(NSNumber)
-  case Null
+	case Object([Swift.String: JSON])
+	case Array([JSON])
+	case String(Swift.String)
+	case Number(NSNumber)
+	case Null
 }
 
 public extension JSON {
-  static func encode(json: AnyObject) -> JSON {
-    switch json {
-    case let v as [AnyObject]: return .Array(v.map(encode))
-
-    case let v as [Swift.String: AnyObject]:
-      return .Object(reduce(v, [:]) { (var accum, elem) in
-        let parsedValue = (Optional.Some(elem.1).map(encode)) ?? .Null
-        accum[elem.0] = parsedValue
-        return accum
-      })
-
-    case let v as Swift.String: return .String(v)
-    case let v as NSNumber: return .Number(v)
-    default: return .Null
-    }
-  }
-}
-
-extension JSON: Decodable {
-  public static func decode(j: JSON) -> Decoded<JSON> {
-    return .Success(Box(j))
-  }
-}
-
-extension JSON: Printable {
-  public var description: Swift.String {
-    switch self {
-    case let .String(v): return "String(\(v))"
-    case let .Number(v): return "Number(\(v))"
-    case let .Null: return "Null"
-    case let .Array(a): return "Array(\(a.description))"
-    case let .Object(o): return "Object(\(o.description))"
-    }
-  }
-}
-
-extension JSON: Equatable { }
-
-public func == (lhs: JSON, rhs: JSON) -> Bool {
-  switch (lhs, rhs) {
-  case let (.String(l), .String(r)): return l == r
-  case let (.Number(l), .Number(r)): return l == r
-  case let (.Null, .Null): return true
-  case let (.Array(l), .Array(r)): return l == r
-  case let (.Object(l), .Object(r)): return l == r
-  default: return false
-  }
-}
-
-extension JSON {
-	public func typeMismatch<T>(expectedType: Swift.String) -> Decoded<T> {
-		return .TypeMismatch("\(self) is not a \(expectedType)")
+	public static func convert(json: AnyObject) -> JSON {
+		switch json {
+		case let v as [AnyObject]: return .Array(v.map(convert))
+			
+		case let v as [Swift.String: AnyObject]:
+			return .Object(v.reduce([:]) { (var accum, elem) in
+				let parsedValue = (Optional.Some(elem.1).map(convert)) ?? .Null
+				accum[elem.0] = parsedValue
+				return accum
+				})
+			
+		case let v as Swift.String: return .String(v)
+		case let v as NSNumber: return .Number(v)
+		default: return .Null
+		}
 	}
 }
+
+// MARK: - Decodes
+
+extension JSON {
+	public func decode<A where A: Decodable, A == A.DecodedType>() throws -> A {
+		return try A.decode(self)
+	}
+	
+	public func decode<A where A: Decodable, A == A.DecodedType>() throws -> [A] {
+		switch self {
+		case let .Array(a): return try a.mmap(A.decode)
+		default:
+			throw DecodeError.TypeMismatch("Expected an Array, got `\(self)` instead")
+		}
+	}
+}
+
+// MARK: - Values 
 
 extension JSON {
 	
 	// MARK: - Objects
 	
-	// Pull value from JSON
-	public func value<A where A: Decodable, A == A.DecodedType>(key: Swift.String) -> Decoded<A> {
-		return decodedJSONForKey(self, key).flatMap(A.decode)
+	public func value<A where A: Decodable, A == A.DecodedType>(key: Swift.String) throws -> A {
+		return try A.decode(JSONForKey(key, json: self))
 	}
 	
-	// Pull optional value from JSON
-	public func value<A where A: Decodable, A == A.DecodedType>(key: Swift.String) -> Decoded<A?> {
-		return .optional(self.value(key))
+	public func value<A, B where A: Decodable, A == A.DecodedType>(key: Swift.String, transform: A -> B) throws -> B {
+		let val = try A.decode(JSONForKey(key, json: self))
+		return transform(val)
 	}
 	
-	// Pull embedded value from JSON
-	public func value<A where A: Decodable, A == A.DecodedType>(keys: [Swift.String]) -> Decoded<A> {
-		return flatReduce(keys, self, decodedJSONForKey).flatMap(A.decode)
+	public func value<A, B where A: Decodable, A == A.DecodedType>(key: Swift.String, transform: A? -> B) throws -> B {
+		let val = try A.decode(JSONForKey(key, json: self))
+		return transform(val)
 	}
 	
-	// Pull embedded optional value from JSON
-	public func value<A where A: Decodable, A == A.DecodedType>(keys: [Swift.String]) -> Decoded<A?> {
-		return .optional(self.value(keys))
+	public func value<A where A: Decodable, A == A.DecodedType>(key: Swift.String) throws -> A? {
+		guard let json = try optionalJSONForKey(key, json: self) else { return .None }
+		return try A.decode(json)
 	}
 	
-	// MARK: Arrays
-	
-	// Pull array from JSON
-	public func value<A where A: Decodable, A == A.DecodedType>(key: Swift.String) -> Decoded<[A]> {
-		return self.value(key).flatMap(decodeArray)
+	public func value<A, B where A: Decodable, A == A.DecodedType>(key: Swift.String, transform: A -> B?) throws -> B? {
+		guard let json = try optionalJSONForKey(key, json: self) else { return .None }
+		let val = try A.decode(json)
+		return transform(val)
 	}
 	
-	// Pull optional array from JSON
-	public func value<A where A: Decodable, A == A.DecodedType>(key: Swift.String) -> Decoded<[A]?> {
-		return .optional(self.value(key))
+	public func value<A where A: Decodable, A == A.DecodedType>(keys: [Swift.String]) throws -> A {
+		return try A.decode(keys.mreduce(self) { (json, key) -> JSON in try JSONForKey(key, json: json) })
 	}
 	
-	// Pull embedded array from JSON
-	public func value<A where A: Decodable, A == A.DecodedType>(keys: [Swift.String]) -> Decoded<[A]> {
-		return self.value(keys).flatMap(decodeArray)
+	public func value<A, B where A: Decodable, A == A.DecodedType>(keys: [Swift.String], transform: A -> B) throws -> B {
+		let val = try A.decode(keys.mreduce(self) { (json, key) -> JSON in try JSONForKey(key, json: json) })
+		return transform(val)
 	}
 	
-	// Pull embedded optional array from JSON
-	public func value<A where A: Decodable, A == A.DecodedType>(keys: [Swift.String]) -> Decoded<[A]?> {
-		return .optional(self.value(keys))
+	public func value<A, B where A: Decodable, A == A.DecodedType>(keys: [Swift.String], transform: A? -> B) throws -> B {
+		let val = try A.decode(keys.mreduce(self) { (json, key) -> JSON in try JSONForKey(key, json: json) })
+		return transform(val)
+	}
+	
+	public func value<A where A: Decodable, A == A.DecodedType>(keys: [Swift.String]) throws -> A? {
+		guard let json = try optionalJSONForKeys(keys, json: self) else { return .None }
+		return try A.decode(json)
+	}
+	
+	public func value<A, B where A: Decodable, A == A.DecodedType>(keys: [Swift.String], transform: A -> B?) throws -> B? {
+		guard let json = try optionalJSONForKeys(keys, json: self) else { return .None }
+		let val = try A.decode(json)
+		return transform(val)
+	}
+	
+	public func value<A, B where A: Decodable, A == A.DecodedType>(keys: [Swift.String], transform: A? -> B?) throws -> B? {
+		guard let json = try optionalJSONForKeys(keys, json: self) else { return .None }
+		let val = try A.decode(json)
+		return transform(val)
+	}
+	
+	// MARK: - Arrays
+	
+	public func value<A where A: Decodable, A == A.DecodedType>(key: Swift.String) throws -> [A] {
+		return try JSONForKey(key, json: self).decode()
+	}
+	
+	public func value<A where A: Decodable, A == A.DecodedType>(key: Swift.String) throws -> [A]? {
+		guard let json = try optionalJSONForKey(key, json: self) else { return .None }
+		return try json.decode()
+	}
+	
+	public func value<A where A: Decodable, A == A.DecodedType>(keys: [Swift.String]) throws -> [A] {
+		return try keys.mreduce(self, combine: { (json, key) -> JSON in try JSONForKey(key, json: json) }).decode()
+	}
+	
+	public func value<A where A: Decodable, A == A.DecodedType>(keys: [Swift.String]) throws -> [A]? {
+		guard let json = try optionalJSONForKeys(keys, json: self) else { return .None }
+		return try json.decode()
 	}
 }
 
-extension JSON {
-	public func decode<A where A: Decodable, A == A.DecodedType>() -> A? {
-		return decode().value
-	}
-	
-	public func decode<A where A: Decodable, A == A.DecodedType>() -> [A]? {
-		return  decode().value
-	}
-	
-	public func decode<A where A: Decodable, A == A.DecodedType>() -> Decoded<A> {
-		return A.decode(self)
-	}
-		
-	public func decode<A where A: Decodable, A == A.DecodedType>() -> Decoded<A?> {
-		return .optional(A.decode(self))
-	}
-	
-	public func decode<A where A: Decodable, A == A.DecodedType>() -> Decoded<[A]> {
-		return decodeArray(self)
-	}
-}
+// MARK: - Private methods
 
-private func decodeArray<T where T: Decodable, T == T.DecodedType>(json: JSON) -> Decoded<[T]> {
+private func JSONForKey(key: Swift.String, json: JSON) throws -> JSON {
 	switch json {
-	case let .Array(a): return sequence(a.map(T.decode))
-	default: return json.typeMismatch("Array")
+	case let .Object(o): return try guardNull(key, json: o[key] ?? .Null)
+	default: throw DecodeError.TypeMismatch("Expected an Object, got `\(json)` instead.")
 	}
 }
 
-private func decodedJSONForKey(json: JSON, key: String) -> Decoded<JSON> {
+private func guardNull(key: Swift.String, json: JSON) throws -> JSON {
 	switch json {
-	case let .Object(o): return guardNull(key, o[key] ?? .Null)
-	default: return json.typeMismatch("Object")
+	case .Null: throw DecodeError.MissingKey("Key `\(key)` not found in JSON `\(json)`")
+	default: return json
 	}
 }
 
-private func guardNull(key: String, j: JSON) -> Decoded<JSON> {
-	switch j {
-	case .Null: return .MissingKey(key)
-	default: return .Success(Box(j))
+private func optionalJSONForKey(key: Swift.String, json: JSON) throws -> JSON? {
+	do {
+		return try JSONForKey(key, json: json)
+	} catch DecodeError.MissingKey(_) {
+		return .None
 	}
 }
 
-private func flatReduce<S: SequenceType, U>(sequence: S, initial: U, combine: (U, S.Generator.Element) -> Decoded<U>) -> Decoded<U> {
-	return reduce(sequence, Decoded.Success(Box(initial))) { accum, x in
-		accum.flatMap({ combine($0, x) })
+private func optionalJSONForKeys(keys: [Swift.String], json: JSON) throws -> JSON? {
+	do {
+		return try keys.mreduce(json) { (json, key) -> JSON in try JSONForKey(key, json: json) }
+	} catch DecodeError.MissingKey(_) {
+		return .None
+	}
+}
+
+// MARK: - CustomStringConvertible
+
+extension JSON: CustomStringConvertible {
+	public var description: Swift.String {
+		switch self {
+		case let .String(v): return "String(\(v))"
+		case let .Number(v): return "Number(\(v))"
+		case .Null: return "Null"
+		case let .Array(a): return "Array(\(a.description))"
+		case let .Object(o): return "Object(\(o.description))"
+		}
 	}
 }
