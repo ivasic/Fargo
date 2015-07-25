@@ -71,6 +71,16 @@ class JSONTests: XCTestCase {
 		}
 	}
 	
+	// MARK: - Description
+	
+	func testDescription() {
+		XCTAssertEqual(JSON.convert("s").description, "String(s)")
+		XCTAssertEqual(JSON.convert(0).description, "Number(0)")
+		XCTAssertEqual(JSON.convert(NSObject()).description, "Null")
+		XCTAssertEqual(JSON.convert([0]).description, "Array([Number(0)])")
+		XCTAssertEqual(JSON.convert(["key":"value"]).description, "Object([key: String(value)])")
+	}
+	
 	// MARK: - Decodes
 	
 	func testDecodeType() {
@@ -130,6 +140,20 @@ class JSONTests: XCTestCase {
 			XCTAssertEqual(a, "string")
 		} catch {
 			XCTFail("Decoding error: \(error)")
+		}
+	}
+	
+	func testDecodeObjectValueInvalidType() {
+		let json = JSON.convert(0)
+		do {
+			let a: Int = try json.value("key")
+			XCTFail("Expeced DecodingError.TypeMismatch got valid obj \(a)")
+		} catch {
+			if case DecodeError.TypeMismatch(_) = error {
+				// all good
+			} else {
+				XCTFail("Expected DecodeError.TypeMismatch, got \(error)")
+			}
 		}
 	}
 	
