@@ -12,8 +12,6 @@ Fargo is a JSON parsing library heavily inspired by a functional JSON parsing li
 
 Add this repo as a submodule, and add all the files from `Fargo` subfolder to your workspace.
 
-You'll also need to add [Box] to your project the same way.
-
 ## Usage tl;dr:
 
 ```swift
