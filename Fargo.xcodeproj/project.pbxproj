@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2C2F07D21B64FAEC00209E14 /* Examples.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C2F07D11B64FAEC00209E14 /* Examples.swift */; };
+		2C2F07D41B64FE8900209E14 /* ExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C2F07D31B64FE8900209E14 /* ExampleTests.swift */; };
 		2C66AF001B63A8D9005FF27D /* FoundationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C66AEFF1B63A8D9005FF27D /* FoundationTests.swift */; };
 		2C66AF021B6407FC005FF27D /* JSONTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C66AF011B6407FC005FF27D /* JSONTests.swift */; };
 		2C73352A1B35F013007FAE40 /* Fargo.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C7335291B35F013007FAE40 /* Fargo.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -31,6 +33,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2C2F07D11B64FAEC00209E14 /* Examples.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Examples.swift; sourceTree = "<group>"; };
+		2C2F07D31B64FE8900209E14 /* ExampleTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExampleTests.swift; sourceTree = "<group>"; };
 		2C66AEFF1B63A8D9005FF27D /* FoundationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoundationTests.swift; sourceTree = "<group>"; };
 		2C66AF011B6407FC005FF27D /* JSONTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONTests.swift; sourceTree = "<group>"; };
 		2C7335261B35F012007FAE40 /* Fargo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Fargo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -98,8 +102,10 @@
 		2C7335341B35F013007FAE40 /* FargoTests */ = {
 			isa = PBXGroup;
 			children = (
-				2C66AF011B6407FC005FF27D /* JSONTests.swift */,
+				2C2F07D11B64FAEC00209E14 /* Examples.swift */,
+				2C2F07D31B64FE8900209E14 /* ExampleTests.swift */,
 				2C73354B1B35F7D8007FAE40 /* Models.swift */,
+				2C66AF011B6407FC005FF27D /* JSONTests.swift */,
 				2C7335491B35F62B007FAE40 /* ModelTests.swift */,
 				2C66AEFF1B63A8D9005FF27D /* FoundationTests.swift */,
 				2C7335371B35F013007FAE40 /* Info.plist */,
@@ -248,7 +254,9 @@
 			files = (
 				2C73354A1B35F62B007FAE40 /* ModelTests.swift in Sources */,
 				2C73354C1B35F7D8007FAE40 /* Models.swift in Sources */,
+				2C2F07D41B64FE8900209E14 /* ExampleTests.swift in Sources */,
 				2C66AF001B63A8D9005FF27D /* FoundationTests.swift in Sources */,
+				2C2F07D21B64FAEC00209E14 /* Examples.swift in Sources */,
 				2C66AF021B6407FC005FF27D /* JSONTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

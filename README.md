@@ -1,14 +1,14 @@
 
 # Fargo 
 
-Fargo is a JSON parsing library heavily inspired by a functional JSON parsing library [Argo](https://github.com/thoughtbot/Argo). Started out as a fork but changed many concepts, mainly, in order to support iOS 7.0, Fargo is not a framework (although can be used as such). Also, all custom operators are replaced with functions and most dependencies are removed.
+Fargo is a JSON parsing library heavily inspired by a functional JSON parsing library [Argo](https://github.com/thoughtbot/Argo). Started out as a fork but changed many concepts, mainly, after Swift 2.0, greatly simplified parsing code and now depending on the do/catch for error handling.
 
 
 ## Installation
 
-### Git Submodules
+### TODO: cocoapods & carthage
 
-Until we can ditch iOS 7.0 support, this is the preferred installation method.
+### Git Submodules
 
 Add this repo as a submodule, and add all the files from `Fargo` subfolder to your workspace.
 
@@ -25,18 +25,15 @@ struct ExampleModel {
 	var tags: [String]
 }
 
-extension ExampleModel: Decodable {
-	static func create(id: Int)(text: String?)(date: NSDate?)(url: NSURL?)(tags: [String]) -> ExampleModel {
-		return ExampleModel(id: id, text: text, date: NSDate(), url: url, tags: tags)
-	}		
-	
-	static func decode(json: JSON) -> Decoded<ExampleModel> {
-		return ExampleModel.create
-			<^> json.value("id")
-			<*> json.value(["extras", "text"])							// nested objects
-			<*> json.value("date").convert(convertDate)						// with converter function
-			<*> json.value("url").convert({ return NSURL(string: $0)! })					// or inline
-			<*> json.value("tags")										// arrays
+extension ExampleModel : Decodable {
+	static func decode(json: JSON) throws -> ExampleModel {
+		return ExampleModel(
+			id:		try json.value("id"),
+			text:	try json.value("text"),
+			date:	try json.value("date", transform: dateFromString),
+			url:	try json.value("url", transform: { NSURL(string: $0) }),
+			tags:	try json.value("tags")
+		)
 	}
 }
 
@@ -45,10 +42,12 @@ extension ExampleModel: Decodable {
 let dict: AnyObject? = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.allZeros, error: nil)
 
 if let dict = dict {
-	let json = JSON.encode(dict)
-	let model: ExampleModel? = json.decode() // decode model object directly
-	let decodedModel: Decoded<ExampleModel> = json.decode() // or preserve decoding error info
-
+	do {
+		let model: ExampleModel = try JSON.convert(json).decode()
+	} catch {
+		XCTFail("Decoding ExampleModel failed with error: \(error)")
+	}
+}
 ```
 
 For more examples on how to use Fargo, please check out the tests.
