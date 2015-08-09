@@ -6,7 +6,7 @@ Pod::Spec.new do |s|
   s.homepage = 'https://github.com/ivasic/Fargo'
   s.social_media_url = 'http://twitter.com/ivasic'
   s.authors = { 'Ivan Vasic' => nil }
-  s.source = { :git => 'https://github.com/Fargo/Fargo.git', :tag => "v#{s.version}"  }
+  s.source = { :git => 'https://github.com/ivasic/Fargo.git', :tag => "v#{s.version}"  }
 
   s.ios.deployment_target = '8.0'
   s.osx.deployment_target = '10.9'
