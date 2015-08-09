@@ -12,6 +12,5 @@ Pod::Spec.new do |s|
   s.osx.deployment_target = '10.9'
 
   s.source_files = 'Fargo/**/*.swift'
-  s.public_header_files = 'Fargo/Fargo.h'
   s.requires_arc = true
 end
