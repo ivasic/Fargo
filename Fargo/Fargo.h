@@ -2,11 +2,11 @@
 //  Fargo.h
 //  Fargo
 //
-//  Created by Ivan Vasic on 20/06/15.
+//  Created by Ivan Vasic on 09/08/15.
 //  Copyright © 2015 Ivan Vasic. All rights reserved.
 //
 
-#import <Cocoa/Cocoa.h>
+#import <Foundation/Foundation.h>
 
 //! Project version number for Fargo.
 FOUNDATION_EXPORT double FargoVersionNumber;

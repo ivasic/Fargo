@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "2C7335251B35F012007FAE40"
+               BlueprintIdentifier = "2C26135C1B77815C002A22DC"
                BuildableName = "Fargo.framework"
-               BlueprintName = "Fargo"
+               BlueprintName = "Fargo OSX"
                ReferencedContainer = "container:Fargo.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -26,15 +26,16 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      shouldUseLaunchSchemeArgsEnv = "YES">
+      shouldUseLaunchSchemeArgsEnv = "YES"
+      codeCoverageEnabled = "YES">
       <Testables>
          <TestableReference
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "2C73352F1B35F013007FAE40"
-               BuildableName = "FargoTests.xctest"
-               BlueprintName = "FargoTests"
+               BlueprintIdentifier = "2C26136C1B77819E002A22DC"
+               BuildableName = "Fargo OSX Tests.xctest"
+               BlueprintName = "Fargo OSX Tests"
                ReferencedContainer = "container:Fargo.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -42,9 +43,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "2C7335251B35F012007FAE40"
+            BlueprintIdentifier = "2C26135C1B77815C002A22DC"
             BuildableName = "Fargo.framework"
-            BlueprintName = "Fargo"
+            BlueprintName = "Fargo OSX"
             ReferencedContainer = "container:Fargo.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -64,9 +65,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "2C7335251B35F012007FAE40"
+            BlueprintIdentifier = "2C26135C1B77815C002A22DC"
             BuildableName = "Fargo.framework"
-            BlueprintName = "Fargo"
+            BlueprintName = "Fargo OSX"
             ReferencedContainer = "container:Fargo.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -82,9 +83,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "2C7335251B35F012007FAE40"
+            BlueprintIdentifier = "2C26135C1B77815C002A22DC"
             BuildableName = "Fargo.framework"
-            BlueprintName = "Fargo"
+            BlueprintName = "Fargo OSX"
             ReferencedContainer = "container:Fargo.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
