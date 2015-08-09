@@ -61,14 +61,9 @@ extension JSON {
 		return try A.decode(JSONForKey(key, json: self))
 	}
 	
-	public func value<A, B where A: Decodable, A == A.DecodedType>(key: Swift.String, transform: A -> B) throws -> B {
+	public func value<A, B where A: Decodable, A == A.DecodedType>(key: Swift.String, transform: A throws -> B) throws -> B {
 		let val = try A.decode(JSONForKey(key, json: self))
-		return transform(val)
-	}
-	
-	public func value<A, B where A: Decodable, A == A.DecodedType>(key: Swift.String, transform: A? -> B) throws -> B {
-		let val = try A.decode(JSONForKey(key, json: self))
-		return transform(val)
+		return try transform(val)
 	}
 	
 	public func value<A where A: Decodable, A == A.DecodedType>(key: Swift.String) throws -> A? {
@@ -76,24 +71,19 @@ extension JSON {
 		return try A.decode(json)
 	}
 	
-	public func value<A, B where A: Decodable, A == A.DecodedType>(key: Swift.String, transform: A -> B?) throws -> B? {
+	public func value<A, B where A: Decodable, A == A.DecodedType>(key: Swift.String, transform: A throws -> B?) throws -> B? {
 		guard let json = try optionalJSONForKey(key, json: self) else { return .None }
 		let val = try A.decode(json)
-		return transform(val)
+		return try transform(val)
 	}
 	
 	public func value<A where A: Decodable, A == A.DecodedType>(keys: [Swift.String]) throws -> A {
 		return try A.decode(keys.mreduce(self) { (json, key) -> JSON in try JSONForKey(key, json: json) })
 	}
 	
-	public func value<A, B where A: Decodable, A == A.DecodedType>(keys: [Swift.String], transform: A -> B) throws -> B {
+	public func value<A, B where A: Decodable, A == A.DecodedType>(keys: [Swift.String], transform: A throws -> B) throws -> B {
 		let val = try A.decode(keys.mreduce(self) { (json, key) -> JSON in try JSONForKey(key, json: json) })
-		return transform(val)
-	}
-	
-	public func value<A, B where A: Decodable, A == A.DecodedType>(keys: [Swift.String], transform: A? -> B) throws -> B {
-		let val = try A.decode(keys.mreduce(self) { (json, key) -> JSON in try JSONForKey(key, json: json) })
-		return transform(val)
+		return try transform(val)
 	}
 	
 	public func value<A where A: Decodable, A == A.DecodedType>(keys: [Swift.String]) throws -> A? {
@@ -101,16 +91,10 @@ extension JSON {
 		return try A.decode(json)
 	}
 	
-	public func value<A, B where A: Decodable, A == A.DecodedType>(keys: [Swift.String], transform: A -> B?) throws -> B? {
+	public func value<A, B where A: Decodable, A == A.DecodedType>(keys: [Swift.String], transform: A throws -> B?) throws -> B? {
 		guard let json = try optionalJSONForKeys(keys, json: self) else { return .None }
 		let val = try A.decode(json)
-		return transform(val)
-	}
-	
-	public func value<A, B where A: Decodable, A == A.DecodedType>(keys: [Swift.String], transform: A? -> B?) throws -> B? {
-		guard let json = try optionalJSONForKeys(keys, json: self) else { return .None }
-		let val = try A.decode(json)
-		return transform(val)
+		return try transform(val)
 	}
 	
 	// MARK: - Arrays

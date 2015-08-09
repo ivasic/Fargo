@@ -110,13 +110,10 @@ struct TransformsModel {
 
 extension TransformsModel: Decodable {
 	
-	static func convertDate(string: String?) -> NSDate? {
-		if let string = string {
-			let df = NSDateFormatter()
-			df.dateFormat = "yyyy-MM-dd HH:mm:ss ZZZ"
-			return df.dateFromString(string)
-		}
-		return nil
+	static func convertDate(string: String) -> NSDate? {
+		let df = NSDateFormatter()
+		df.dateFormat = "yyyy-MM-dd HH:mm:ss ZZZ"
+		return df.dateFromString(string)
 	}
 	
 	static func decode(json: JSON) throws -> TransformsModel {
@@ -126,3 +123,24 @@ extension TransformsModel: Decodable {
 		return TransformsModel(date: date, url: url)
 	}
 }
+
+struct TransformsModel2 {
+	let number: Int
+}
+
+extension TransformsModel2: Decodable {
+	
+	static func convert(str: String) throws -> Int {
+		if let num = Int(str) {
+			return num
+		}
+		
+		throw DecodeError.TypeMismatch("Expected string representation of a number, got \(str)")
+	}
+	
+	static func decode(json: JSON) throws -> TransformsModel2 {
+		let num: Int = try json.value("number", transform: convert)
+		return TransformsModel2(number: num)
+	}
+}
+

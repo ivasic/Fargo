@@ -202,4 +202,32 @@ class ModelTests: XCTestCase {
 			XCTFail("CollectionsEmbedded could not be decoded: \(error)")
 		}
 	}
+	
+	func testOptionalTransform() {
+		let j = ["number" : "42"]
+		let json = JSON.convert(j)
+		
+		do {
+			let m: TransformsModel2 = try json.decode()
+			XCTAssertEqual(m.number, 42)
+		} catch {
+			XCTFail("TransformsModel2 could not be decoded: \(error)")
+		}
+	}
+	
+	func testOptionalTransformFail() {
+		let j = ["number" : "text"]
+		let json = JSON.convert(j)
+		
+		do {
+			let m: TransformsModel2 = try json.decode()
+			XCTFail("Should not have succeeded. Got model: \(m)")
+		} catch {
+			if case DecodeError.TypeMismatch(_) = error {
+				// all good
+			} else {
+				XCTFail("Expected DecodeError.TypeMismatch, got \(error)")
+			}
+		}
+	}
 }

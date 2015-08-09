@@ -168,17 +168,6 @@ class JSONTests: XCTestCase {
 		}
 	}
 	
-	func testDecodeObjectValueWithTransformFromOptional() {
-		let json = JSON.convert(["key" : 0])
-		let transform: (Int? -> Float) = { $0 == nil ? 0 : Float($0!) }
-		do {
-			let a: Float = try json.value("key", transform: transform)
-			XCTAssertEqual(a, 0)
-		} catch {
-			XCTFail("Decoding error: \(error)")
-		}
-	}
-	
 	func testDecodeObjectValueWithTransformToOptional() {
 		let json = JSON.convert(["key" : 0])
 		let transform: (Int -> Float?) = { Float($0) }
@@ -212,17 +201,6 @@ class JSONTests: XCTestCase {
 		}
 	}
 	
-	func testDecodeNestedObjectValueWithTransformFromOptional() {
-		let json = JSON.convert(["parent" : ["key": "1"]])
-		let transform: (String? -> Int) = { $0 == nil ? 0 : $0!.characters.count }
-		do {
-			let a: Int = try json.value(["parent", "key"], transform: transform)
-			XCTAssertEqual(a, 1)
-		} catch {
-			XCTFail("Decoding error: \(error)")
-		}
-	}
-	
 	func testDecodeNestedObjectValueWithTransformToOptional() {
 		let json = JSON.convert(["parent" : ["key": "1"]])
 		let transform: (String -> Int?) = { $0.characters.count }
@@ -237,28 +215,6 @@ class JSONTests: XCTestCase {
 	func testDecodeNestedObjectValueWithTransformToOptionalNone() {
 		let json = JSON.convert(["parent" : [:]])
 		let transform: (String -> Int?) = { $0.characters.count }
-		do {
-			let a: Int? = try json.value(["parent", "key"], transform: transform)
-			XCTAssert(a == .None)
-		} catch {
-			XCTFail("Decoding error: \(error)")
-		}
-	}
-	
-	func testDecodeNestedObjectValueWithTransformFromToOptional() {
-		let json = JSON.convert(["parent" : ["key": "1"]])
-		let transform: (String? -> Int?) = { $0 == nil ? .None : $0!.characters.count }
-		do {
-			let a: Int? = try json.value(["parent", "key"], transform: transform)
-			XCTAssert(a == 1)
-		} catch {
-			XCTFail("Decoding error: \(error)")
-		}
-	}
-	
-	func testDecodeNestedObjectValueWithTransformFromToOptionalNone() {
-		let json = JSON.convert(["parent" : [:]])
-		let transform: (String? -> Int?) = { $0 == nil ? .None : $0!.characters.count }
 		do {
 			let a: Int? = try json.value(["parent", "key"], transform: transform)
 			XCTAssert(a == .None)
