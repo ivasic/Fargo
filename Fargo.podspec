@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name = 'Fargo'
-  s.version = '0.9'
+  s.version = '0.9.1'
   s.license = { :type => 'MIT', :file => 'LICENSE' }
   s.summary = 'Easy & fast JSON deserializing library'
   s.homepage = 'https://github.com/ivasic/Fargo'
