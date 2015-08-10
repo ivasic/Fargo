@@ -9,6 +9,5 @@
 import Foundation
 
 public protocol Decodable {
-	typealias DecodedType = Self
-	static func decode(json: JSON) throws -> DecodedType
+	static func decode(json: JSON) throws -> Self
 }
