@@ -2,7 +2,7 @@ Pod::Spec.new do |s|
   s.name = 'Fargo'
   s.version = '0.9.1'
   s.license = { :type => 'MIT', :file => 'LICENSE' }
-  s.summary = 'Easy & fast JSON deserializing library'
+  s.summary = 'Extra easy, clean & fast JSON deserializing library written in Swift'
   s.homepage = 'https://github.com/ivasic/Fargo'
   s.social_media_url = 'http://twitter.com/ivasic'
   s.authors = { 'Ivan Vasic' => nil }
