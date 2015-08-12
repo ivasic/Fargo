@@ -6,7 +6,23 @@ Fargo is a JSON parsing library heavily inspired by a functional JSON parsing li
 
 ## Installation
 
-### TODO: cocoapods & carthage
+### CocoaPods
+
+To integrate Fargo into your Xcode project using CocoaPods, specify it in your Podfile:
+
+	source 'https://github.com/CocoaPods/Specs.git'
+	platform :ios, '8.0'
+	use_frameworks!
+	
+	pod 'Fargo'
+
+Then, run the following command:
+
+	$ pod install
+	
+### Carthage
+
+TODO
 
 ### Git Submodules
 
