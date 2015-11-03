@@ -12,7 +12,7 @@ import Fargo
 class FoundationTests: XCTestCase {
 	
 	func testDecodingString() {
-		let json = JSON.convert("string")
+        let json = JSON(object: "string")
 		do {
 			let a: String = try json.decode()
 			XCTAssertEqual(a, "string")
@@ -22,17 +22,17 @@ class FoundationTests: XCTestCase {
 	}
 	
 	func testDecodingErrorString() {
-		let json = JSON.convert(0)
+		let json = JSON(object: 0)
 		do {
 			let a: String = try json.decode()
 			XCTFail("Expected DecodeError, got valid object: \(a)")
 		} catch {
-			XCTAssert(error is DecodeError)
+			XCTAssert(error is JSON.Error)
 		}
 	}
 	
 	func testDecodingBool() {
-		let json = JSON.convert(true)
+		let json = JSON(object: true)
 		do {
 			let a: Bool = try json.decode()
 			XCTAssertEqual(a, true)
@@ -42,17 +42,17 @@ class FoundationTests: XCTestCase {
 	}
 	
 	func testDecodingErrorBool() {
-		let json = JSON.convert("s")
+		let json = JSON(object: "s")
 		do {
 			let a: Bool = try json.decode()
 			XCTFail("Expected DecodeError, got valid object: \(a)")
 		} catch {
-			XCTAssert(error is DecodeError)
+			XCTAssert(error is JSON.Error)
 		}
 	}
 	
 	func testDecodingFloat() {
-		let json = JSON.convert(0)
+		let json = JSON(object: 0)
 		do {
 			let a: Float = try json.decode()
 			XCTAssertEqual(a, 0)
@@ -62,17 +62,17 @@ class FoundationTests: XCTestCase {
 	}
 	
 	func testDecodingErrorFloat() {
-		let json = JSON.convert("0")
+		let json = JSON(object: "0")
 		do {
 			let a: Float = try json.decode()
-			XCTFail("Expected DecodeError, got valid object: \(a)")
+			XCTFail("Expected JSON.Error, got valid object: \(a)")
 		} catch {
-			XCTAssert(error is DecodeError)
+			XCTAssert(error is JSON.Error)
 		}
 	}
 	
 	func testDecodingDouble() {
-		let json = JSON.convert(0)
+		let json = JSON(object: 0)
 		do {
 			let a: Double = try json.decode()
 			XCTAssertEqual(a, 0)
@@ -82,17 +82,17 @@ class FoundationTests: XCTestCase {
 	}
 	
 	func testDecodingErrorDouble() {
-		let json = JSON.convert("0")
+		let json = JSON(object: "0")
 		do {
 			let a: Double = try json.decode()
-			XCTFail("Expected DecodeError, got valid object: \(a)")
+			XCTFail("Expected JSON.Error, got valid object: \(a)")
 		} catch {
-			XCTAssert(error is DecodeError)
+			XCTAssert(error is JSON.Error)
 		}
 	}
 	
 	func testDecodingInt() {
-		let json = JSON.convert(0)
+		let json = JSON(object: 0)
 		do {
 			let a: Int = try json.decode()
 			XCTAssertEqual(a, 0)
@@ -102,17 +102,17 @@ class FoundationTests: XCTestCase {
 	}
 	
 	func testDecodingErrorInt() {
-		let json = JSON.convert("0")
+		let json = JSON(object: "0")
 		do {
 			let a: Int = try json.decode()
-			XCTFail("Expected DecodeError, got valid object: \(a)")
+			XCTFail("Expected JSON.Error, got valid object: \(a)")
 		} catch {
-			XCTAssert(error is DecodeError)
+			XCTAssert(error is JSON.Error)
 		}
 	}
 	
 	func testDecodingUInt() {
-		let json = JSON.convert(0)
+		let json = JSON(object: 0)
 		do {
 			let a: UInt = try json.decode()
 			XCTAssertEqual(a, 0)
@@ -122,12 +122,12 @@ class FoundationTests: XCTestCase {
 	}
 	
 	func testDecodingErrorUInt() {
-		let json = JSON.convert("0")
+		let json = JSON(object: "0")
 		do {
 			let a: UInt = try json.decode()
-			XCTFail("Expected DecodeError, got valid object: \(a)")
+			XCTFail("Expected JSON.Error, got valid object: \(a)")
 		} catch {
-			XCTAssert(error is DecodeError)
+			XCTAssert(error is JSON.Error)
 		}
 	}
 }
