@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "2CE35CC01BEB996A00299406"
+               BlueprintIdentifier = "2CE35CF61BEB9C1F00299406"
                BuildableName = "Fargo.framework"
-               BlueprintName = "Fargo-tvOS"
+               BlueprintName = "Fargo-watchOS"
                ReferencedContainer = "container:Fargo.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -28,26 +28,7 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "2CE35CC91BEB996A00299406"
-               BuildableName = "FargoTests.xctest"
-               BlueprintName = "Fargo-tvOSTests"
-               ReferencedContainer = "container:Fargo.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "2CE35CC01BEB996A00299406"
-            BuildableName = "Fargo.framework"
-            BlueprintName = "Fargo-tvOS"
-            ReferencedContainer = "container:Fargo.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>
@@ -64,9 +45,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "2CE35CC01BEB996A00299406"
+            BlueprintIdentifier = "2CE35CF61BEB9C1F00299406"
             BuildableName = "Fargo.framework"
-            BlueprintName = "Fargo-tvOS"
+            BlueprintName = "Fargo-watchOS"
             ReferencedContainer = "container:Fargo.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -82,9 +63,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "2CE35CC01BEB996A00299406"
+            BlueprintIdentifier = "2CE35CF61BEB9C1F00299406"
             BuildableName = "Fargo.framework"
-            BlueprintName = "Fargo-tvOS"
+            BlueprintName = "Fargo-watchOS"
             ReferencedContainer = "container:Fargo.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
