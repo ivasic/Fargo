@@ -77,7 +77,10 @@ class JSONErrorTests: XCTestCase {
         let description = error.descriptionForJSON(json)
         
         // Then
-        XCTAssertEqual(description, "MissingKey `Key(\"key\")` in JSON : ``. Full keyPath `/`")
+        XCTAssertTrue(description.hasPrefix("MissingKey `Key(\"key\")` in JSON :"))
+        XCTAssertTrue(description.containsString("somekey"))
+        XCTAssertTrue(description.containsString("somevalue"))
+        XCTAssertTrue(description.hasSuffix("Full keyPath `/`"))
     }
     
     func testDebugDescriptionForJSONForTypeMismatch() {
@@ -89,7 +92,7 @@ class JSONErrorTests: XCTestCase {
         let description = error.descriptionForJSON(json)
         
         // Then
-        XCTAssertEqual(description, "TypeMismatch, expected `String` got `?`. Full keyPath `/`")
+        XCTAssertEqual(description, "TypeMismatch, expected `String` got `(Object (1))`. Full keyPath `/`")
     }
     
     func testDebugDescriptionForJSONForTypeMismatchWithInvalidKeyPath() {
@@ -101,6 +104,6 @@ class JSONErrorTests: XCTestCase {
         let description = error.descriptionForJSON(json)
         
         // Then
-        XCTAssertEqual(description, "TypeMismatch, expected `String` got `?`. Full keyPath `/`")
+        XCTAssertEqual(description, "TypeMismatch, expected `String` got `Int`. Full keyPath `/.test`")
     }
 }

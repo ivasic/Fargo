@@ -37,7 +37,7 @@ extension JSON {
             case .MissingKey(let key, let keyPath):
                 var string = "MissingKey `\(key)`"
                 if let json = try? json.jsonForKeyPath(keyPath) {
-                    string = "\(string) in JSON : `\(json)`"
+                    string = "\(string) in JSON : `\(json.object)`"
                 }
                 string = "\(string). Full keyPath `\(keyPath)`"
                 return string
@@ -46,7 +46,7 @@ extension JSON {
                 if let json = try? json.jsonForKeyPath(keyPath) {
                     string = "\(string) got `(\(json))`"
                 } else {
-                    string = " got `\(actual)`"
+                    string = "\(string) got `\(actual)`"
                 }
                 string = "\(string). Full keyPath `\(keyPath)`"
                 return string
