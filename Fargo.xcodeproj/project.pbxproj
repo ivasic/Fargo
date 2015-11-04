@@ -35,6 +35,19 @@
 		2CE35CA51BEB58EE00299406 /* JSONValueTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC7A5261BE8C65B0027A1CE /* JSONValueTests.swift */; };
 		2CE35CA61BEB58EE00299406 /* JSONErrorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC7ACC31BE8D1990027A1CE /* JSONErrorTests.swift */; };
 		2CE35CA71BEB58EE00299406 /* KeyPathTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC7A5221BE8BFBF0027A1CE /* KeyPathTests.swift */; };
+		2CE35CCB1BEB996A00299406 /* Fargo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CE35CC11BEB996A00299406 /* Fargo.framework */; };
+		2CE35CD81BEB99B400299406 /* Examples.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC7A5011BE8A7C50027A1CE /* Examples.swift */; };
+		2CE35CD91BEB99B400299406 /* ExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC7A5021BE8A7C50027A1CE /* ExampleTests.swift */; };
+		2CE35CDA1BEB99B400299406 /* FoundationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC7A5031BE8A7C50027A1CE /* FoundationTests.swift */; };
+		2CE35CDB1BEB99B400299406 /* JSONTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC7A5201BE8B0330027A1CE /* JSONTests.swift */; };
+		2CE35CDC1BEB99B400299406 /* JSONDecodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC7A5241BE8C0E40027A1CE /* JSONDecodeTests.swift */; };
+		2CE35CDD1BEB99B400299406 /* JSONValueTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC7A5261BE8C65B0027A1CE /* JSONValueTests.swift */; };
+		2CE35CDE1BEB99B400299406 /* JSONErrorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC7ACC31BE8D1990027A1CE /* JSONErrorTests.swift */; };
+		2CE35CDF1BEB99B400299406 /* KeyPathTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC7A5221BE8BFBF0027A1CE /* KeyPathTests.swift */; };
+		2CE35CE01BEB99B900299406 /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CDABCE01BE610D5001BE9EB /* JSON.swift */; };
+		2CE35CE11BEB99B900299406 /* Decodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CDABCE21BE610E7001BE9EB /* Decodable.swift */; };
+		2CE35CE21BEB99B900299406 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CDABCE41BE61108001BE9EB /* Error.swift */; };
+		2CE35CE31BEB99BB00299406 /* Foundation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CDABCE81BE619CB001BE9EB /* Foundation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +64,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 2CE35C831BEB587400299406;
 			remoteInfo = "Fargo-OSX";
+		};
+		2CE35CCC1BEB996A00299406 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2CDABCB91BE6104E001BE9EB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2CE35CC01BEB996A00299406;
+			remoteInfo = "Fargo-tvOS";
 		};
 /* End PBXContainerItemProxy section */
 
@@ -79,6 +99,8 @@
 		2CDABCE81BE619CB001BE9EB /* Foundation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Foundation.swift; sourceTree = "<group>"; };
 		2CE35C841BEB587400299406 /* Fargo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Fargo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CE35C8D1BEB587400299406 /* FargoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FargoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		2CE35CC11BEB996A00299406 /* Fargo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Fargo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2CE35CCA1BEB996A00299406 /* FargoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FargoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +134,21 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		2CE35CBD1BEB996A00299406 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2CE35CC71BEB996A00299406 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2CE35CCB1BEB996A00299406 /* Fargo.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -141,6 +178,8 @@
 				2CDABCCC1BE6104E001BE9EB /* FargoTests.xctest */,
 				2CE35C841BEB587400299406 /* Fargo.framework */,
 				2CE35C8D1BEB587400299406 /* FargoTests.xctest */,
+				2CE35CC11BEB996A00299406 /* Fargo.framework */,
+				2CE35CCA1BEB996A00299406 /* FargoTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -220,6 +259,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		2CE35CBE1BEB996A00299406 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
@@ -295,6 +341,42 @@
 			productReference = 2CE35C8D1BEB587400299406 /* FargoTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		2CE35CC01BEB996A00299406 /* Fargo-tvOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2CE35CD21BEB996B00299406 /* Build configuration list for PBXNativeTarget "Fargo-tvOS" */;
+			buildPhases = (
+				2CE35CBC1BEB996A00299406 /* Sources */,
+				2CE35CBD1BEB996A00299406 /* Frameworks */,
+				2CE35CBE1BEB996A00299406 /* Headers */,
+				2CE35CBF1BEB996A00299406 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Fargo-tvOS";
+			productName = "Fargo-tvOS";
+			productReference = 2CE35CC11BEB996A00299406 /* Fargo.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		2CE35CC91BEB996A00299406 /* Fargo-tvOSTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2CE35CD51BEB996B00299406 /* Build configuration list for PBXNativeTarget "Fargo-tvOSTests" */;
+			buildPhases = (
+				2CE35CC61BEB996A00299406 /* Sources */,
+				2CE35CC71BEB996A00299406 /* Frameworks */,
+				2CE35CC81BEB996A00299406 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2CE35CCD1BEB996A00299406 /* PBXTargetDependency */,
+			);
+			name = "Fargo-tvOSTests";
+			productName = "Fargo-tvOSTests";
+			productReference = 2CE35CCA1BEB996A00299406 /* FargoTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -317,6 +399,12 @@
 					2CE35C8C1BEB587400299406 = {
 						CreatedOnToolsVersion = 7.1;
 					};
+					2CE35CC01BEB996A00299406 = {
+						CreatedOnToolsVersion = 7.1;
+					};
+					2CE35CC91BEB996A00299406 = {
+						CreatedOnToolsVersion = 7.1;
+					};
 				};
 			};
 			buildConfigurationList = 2CDABCBC1BE6104E001BE9EB /* Build configuration list for PBXProject "Fargo" */;
@@ -335,6 +423,8 @@
 				2CDABCCB1BE6104E001BE9EB /* Fargo-iOS Tests */,
 				2CE35C831BEB587400299406 /* Fargo-OSX */,
 				2CE35C8C1BEB587400299406 /* Fargo-OSXTests */,
+				2CE35CC01BEB996A00299406 /* Fargo-tvOS */,
+				2CE35CC91BEB996A00299406 /* Fargo-tvOSTests */,
 			);
 		};
 /* End PBXProject section */
@@ -362,6 +452,20 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		2CE35C8B1BEB587400299406 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2CE35CBF1BEB996A00299406 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2CE35CC81BEB996A00299406 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -423,6 +527,32 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		2CE35CBC1BEB996A00299406 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2CE35CE01BEB99B900299406 /* JSON.swift in Sources */,
+				2CE35CE21BEB99B900299406 /* Error.swift in Sources */,
+				2CE35CE31BEB99BB00299406 /* Foundation.swift in Sources */,
+				2CE35CE11BEB99B900299406 /* Decodable.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2CE35CC61BEB996A00299406 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2CE35CD91BEB99B400299406 /* ExampleTests.swift in Sources */,
+				2CE35CDD1BEB99B400299406 /* JSONValueTests.swift in Sources */,
+				2CE35CD81BEB99B400299406 /* Examples.swift in Sources */,
+				2CE35CDE1BEB99B400299406 /* JSONErrorTests.swift in Sources */,
+				2CE35CDA1BEB99B400299406 /* FoundationTests.swift in Sources */,
+				2CE35CDC1BEB99B400299406 /* JSONDecodeTests.swift in Sources */,
+				2CE35CDF1BEB99B400299406 /* KeyPathTests.swift in Sources */,
+				2CE35CDB1BEB99B400299406 /* JSONTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -435,6 +565,11 @@
 			isa = PBXTargetDependency;
 			target = 2CE35C831BEB587400299406 /* Fargo-OSX */;
 			targetProxy = 2CE35C8F1BEB587500299406 /* PBXContainerItemProxy */;
+		};
+		2CE35CCD1BEB996A00299406 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2CE35CC01BEB996A00299406 /* Fargo-tvOS */;
+			targetProxy = 2CE35CCC1BEB996A00299406 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -536,7 +671,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = Fargo/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Fargo/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ivanvasic.fargo;
@@ -554,7 +689,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = Fargo/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Fargo/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ivanvasic.fargo;
@@ -566,7 +701,7 @@
 		2CDABCDA1BE6104E001BE9EB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				INFOPLIST_FILE = FargoTests/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/FargoTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ivanvasic.FargoTests;
 				PRODUCT_NAME = FargoTests;
@@ -576,7 +711,7 @@
 		2CDABCDB1BE6104E001BE9EB /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				INFOPLIST_FILE = FargoTests/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/FargoTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ivanvasic.FargoTests;
 				PRODUCT_NAME = FargoTests;
@@ -586,7 +721,6 @@
 		2CE35C961BEB587500299406 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -607,7 +741,6 @@
 		2CE35C971BEB587500299406 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -628,7 +761,7 @@
 		2CE35C991BEB587500299406 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				INFOPLIST_FILE = FargoTests/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/FargoTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ivanvasic.FargoTests;
 				PRODUCT_NAME = FargoTests;
@@ -639,11 +772,73 @@
 		2CE35C9A1BEB587500299406 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				INFOPLIST_FILE = FargoTests/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/FargoTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ivanvasic.FargoTests;
 				PRODUCT_NAME = FargoTests;
 				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		2CE35CD31BEB996B00299406 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "$(SRCROOT)/Fargo/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ivanvasic.fargo;
+				PRODUCT_NAME = Fargo;
+				SDKROOT = appletvos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+			};
+			name = Debug;
+		};
+		2CE35CD41BEB996B00299406 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "$(SRCROOT)/Fargo/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ivanvasic.fargo;
+				PRODUCT_NAME = Fargo;
+				SDKROOT = appletvos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+			};
+			name = Release;
+		};
+		2CE35CD61BEB996B00299406 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = "$(SRCROOT)/FargoTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.ivanvasic.Fargo-tvOSTests";
+				PRODUCT_NAME = FargoTests;
+				SDKROOT = appletvos;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+			};
+			name = Debug;
+		};
+		2CE35CD71BEB996B00299406 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = "$(SRCROOT)/FargoTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.ivanvasic.Fargo-tvOSTests";
+				PRODUCT_NAME = FargoTests;
+				SDKROOT = appletvos;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
 			};
 			name = Release;
 		};
@@ -690,6 +885,22 @@
 			buildConfigurations = (
 				2CE35C991BEB587500299406 /* Debug */,
 				2CE35C9A1BEB587500299406 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		2CE35CD21BEB996B00299406 /* Build configuration list for PBXNativeTarget "Fargo-tvOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2CE35CD31BEB996B00299406 /* Debug */,
+				2CE35CD41BEB996B00299406 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		2CE35CD51BEB996B00299406 /* Build configuration list for PBXNativeTarget "Fargo-tvOSTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2CE35CD61BEB996B00299406 /* Debug */,
+				2CE35CD71BEB996B00299406 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 		};

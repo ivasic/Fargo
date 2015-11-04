@@ -7,6 +7,7 @@
 //
 
 import Fargo
+import Foundation
 
 // MARK: Simple ExampleModel
 
