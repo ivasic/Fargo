@@ -6,7 +6,7 @@
 //  Copyright © 2015 Ivan Vasic. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 
 //! Project version number for Fargo.
 FOUNDATION_EXPORT double FargoVersionNumber;
