@@ -103,6 +103,7 @@
 		2CDABCE41BE61108001BE9EB /* Error.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
 		2CDABCE61BE6189B001BE9EB /* Fargo.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Fargo.playground; sourceTree = SOURCE_ROOT; };
 		2CDABCE81BE619CB001BE9EB /* Foundation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Foundation.swift; sourceTree = "<group>"; };
+		2CE1515B1BEBF36300F2496F /* .travis.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .travis.yml; sourceTree = SOURCE_ROOT; };
 		2CE35C841BEB587400299406 /* Fargo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Fargo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CE35C8D1BEB587400299406 /* FargoTests-OSX.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "FargoTests-OSX.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CE35CC11BEB996A00299406 /* Fargo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Fargo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -207,6 +208,7 @@
 				2C0032E61BE9F8FF002E8597 /* Readme */,
 				2CDABCC71BE6104E001BE9EB /* Info.plist */,
 				2C0032E71BEA0018002E8597 /* Fargo.podspec */,
+				2CE1515B1BEBF36300F2496F /* .travis.yml */,
 			);
 			path = Fargo;
 			sourceTree = "<group>";
@@ -985,6 +987,7 @@
 				2CE35C971BEB587500299406 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		2CE35C981BEB587500299406 /* Build configuration list for PBXNativeTarget "Fargo-OSXTests" */ = {
 			isa = XCConfigurationList;
@@ -993,6 +996,7 @@
 				2CE35C9A1BEB587500299406 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		2CE35CD21BEB996B00299406 /* Build configuration list for PBXNativeTarget "Fargo-tvOS" */ = {
 			isa = XCConfigurationList;
@@ -1001,6 +1005,7 @@
 				2CE35CD41BEB996B00299406 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		2CE35CD51BEB996B00299406 /* Build configuration list for PBXNativeTarget "Fargo-tvOSTests" */ = {
 			isa = XCConfigurationList;
@@ -1009,6 +1014,7 @@
 				2CE35CD71BEB996B00299406 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		2CE35CFC1BEB9C1F00299406 /* Build configuration list for PBXNativeTarget "Fargo-watchOS" */ = {
 			isa = XCConfigurationList;
@@ -1017,6 +1023,7 @@
 				2CE35CFE1BEB9C1F00299406 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
