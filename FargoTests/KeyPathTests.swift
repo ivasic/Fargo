@@ -7,7 +7,7 @@
 //
 
 import XCTest
-@testable import Fargo
+import Fargo
 
 class KeyPathTests: XCTestCase {
     

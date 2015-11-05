@@ -7,7 +7,7 @@
 //
 
 import XCTest
-@testable import Fargo
+import Fargo
 
 class JSONErrorTests: XCTestCase {
     
@@ -16,7 +16,7 @@ class JSONErrorTests: XCTestCase {
         let json = JSON(object: 0)
         
         // When
-        let error = JSON.Error(missingKey: JSON.KeyPath.Key.Key("key"), json: json)
+        let error = JSON.Error(missingKey: .Key("key"), json: json)
         
         // Then
         XCTAssertEqual(error.debugDescription, "MissingKey `Key(\"key\")` in keyPath `/`")
@@ -35,7 +35,7 @@ class JSONErrorTests: XCTestCase {
     
     func testDebugDescriptionMissingKey() {
         // Given
-        let error = JSON.Error.MissingKey(key: JSON.KeyPath.Key.Key("key"), keyPath: JSON.KeyPath())
+        let error = JSON.Error.MissingKey(key: .Key("key"), keyPath: JSON.KeyPath())
         
         // When
         let description = error.debugDescription
@@ -46,7 +46,7 @@ class JSONErrorTests: XCTestCase {
     
     func testDebugDescriptionMissingKeyIndex() {
         // Given
-        let error = JSON.Error.MissingKey(key: JSON.KeyPath.Key.Index(0), keyPath: JSON.KeyPath())
+        let error = JSON.Error.MissingKey(key: .Index(0), keyPath: JSON.KeyPath())
         
         // When
         let description = error.debugDescription
@@ -71,7 +71,7 @@ class JSONErrorTests: XCTestCase {
     func testDebugDescriptionForJSONForMissingKey() {
         // Given
         let json = JSON(object: ["somekey": "somevalue"])
-        let error = JSON.Error.MissingKey(key: JSON.KeyPath.Key.Key("key"), keyPath: JSON.KeyPath())
+        let error = JSON.Error.MissingKey(key: .Key("key"), keyPath: JSON.KeyPath())
         
         // When
         let description = error.descriptionForJSON(json)

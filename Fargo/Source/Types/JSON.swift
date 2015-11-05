@@ -36,7 +36,7 @@ extension JSON {
             case Index(Int)
         }
         
-        init(path: [Key] = []) {
+        public init(path: [Key] = []) {
             self.path = path
         }
         

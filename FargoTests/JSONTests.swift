@@ -7,10 +7,15 @@
 //
 
 import XCTest
-@testable import Fargo
+#if Debug
+    @testable import Fargo
+#else
+    import Fargo
+#endif
 
 class JSONTests: XCTestCase {
     
+    #if Debug
     func testObjectType() {
         // Given
         let json = JSON(object: 0)
@@ -203,6 +208,7 @@ class JSONTests: XCTestCase {
             XCTFail("Method should not throw")
         }
     }
+    #endif
 }
 
 // MARK: - CustomDebugStringConvertible tests
