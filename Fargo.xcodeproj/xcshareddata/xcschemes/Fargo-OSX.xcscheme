@@ -29,7 +29,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "2CE35C8C1BEB587400299406"
-               BuildableName = "FargoTests.xctest"
+               BuildableName = "FargoTests-OSX.xctest"
                BlueprintName = "Fargo-OSXTests"
                ReferencedContainer = "container:Fargo.xcodeproj">
             </BuildableReference>
@@ -48,7 +48,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "2CE35C8C1BEB587400299406"
-               BuildableName = "FargoTests.xctest"
+               BuildableName = "FargoTests-OSX.xctest"
                BlueprintName = "Fargo-OSXTests"
                ReferencedContainer = "container:Fargo.xcodeproj">
             </BuildableReference>
