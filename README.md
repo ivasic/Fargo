@@ -1,3 +1,6 @@
+[![Build Status](https://travis-ci.org/ivasic/Fargo.svg)](https://travis-ci.org/ivasic/Fargo)
+[![Cocoapods Compatible](https://img.shields.io/cocoapods/v/Fargo.svg)](https://img.shields.io/cocoapods/v/Fargo.svg)
+[![Platform](https://img.shields.io/cocoapods/p/Fargo.svg?style=flat)](http://cocoadocs.org/docsets/Fargo)
 
 # Fargo 
 
@@ -27,6 +30,11 @@ TODO
 ### Git Submodules
 
 Add this repo as a submodule, and add all the files from `Fargo` subfolder to your workspace.
+
+## Requirements
+ 
+ - iOS 8.0+ / Mac OS X 10.9+ / tvOS 9.0+ / watchOS 2.0+
+ - Xcode 7.1+
 
 ## Usage tl;dr:
 
