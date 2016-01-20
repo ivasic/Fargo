@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name = 'Fargo'
-  s.version = '1.0.0'
+  s.version = '0.9.1'
   s.license = { :type => 'MIT', :file => 'LICENSE' }
   s.summary = 'Extra easy, clean & fast JSON deserializing library written in Swift'
   s.homepage = 'https://github.com/ivasic/Fargo'
@@ -10,6 +10,8 @@ Pod::Spec.new do |s|
 
   s.ios.deployment_target = '8.0'
   s.osx.deployment_target = '10.9'
+  s.tvos.deployment_target = '9.0'
+  s.watchos.deployment_target = '2.0'
 
   s.source_files = 'Fargo/**/*.swift'
   s.requires_arc = true
