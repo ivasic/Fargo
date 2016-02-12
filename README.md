@@ -1,5 +1,5 @@
 [![Build Status](https://travis-ci.org/ivasic/Fargo.svg)](https://travis-ci.org/ivasic/Fargo)
-[![Cocoapods Compatible](https://img.shields.io/cocoapods/v/Fargo.svg)](https://img.shields.io/cocoapods/v/Fargo.svg)
+[![CocoaPods Compatible](https://img.shields.io/cocoapods/v/Fargo.svg)](https://img.shields.io/cocoapods/v/Fargo.svg)
 [![Platform](https://img.shields.io/cocoapods/p/Fargo.svg?style=flat)](http://cocoadocs.org/docsets/Fargo)
 
 # Fargo 
